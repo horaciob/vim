@@ -1,7 +1,8 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
+"set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
 " Let Vundle manage Vundle
@@ -14,7 +15,10 @@ Bundle 'nanotech/jellybeans.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'slim-template/vim-slim'
-
+Bundle 'ctrlpvim/ctrlp.vim'
+Bundle 'ervandew/supertab'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 filetype plugin indent on
 
 color jellybeans
@@ -46,10 +50,48 @@ autocmd VimEnter * set nosc
 nmap <leader>n :NERDTreeToggle<CR>
 let NERDTreeHighlightCursorline=1
 let NERDTreeIgnore = ['tmp', '.yardoc', 'pkg']
+map <C-n> :NERDTreeToggle<CR>
 
 " Syntastic
-let g:syntastic_mode_map = { 'mode': 'active' }
-let g:syntastic_ruby_exec = '~/.rvm/rubies/ruby-2.0.0-p0/bin/ruby'
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 set expandtab ts=2 sw=2 ai
 set nu
+let g:ctrlp_custom_ignore= 'vendor'
+"let g:airline#extensions#tabline#enabled = 1
+set laststatus=2
+
+" Removes trailing spaces
+function TrimWhiteSpace()
+  %s/\s*$//
+  ''
+endfunction
+
+"set list listchars=trail:.,extends:>
+"autocmd FileWritePre * call TrimWhiteSpace()
+"autocmd FileAppendPre * call TrimWhiteSpace()
+"autocmd FilterWritePre * call TrimWhiteSpace()
+"autocmd BufWritePre * call TrimWhiteSpace()
+
+map <F2> :call TrimWhiteSpace()<CR>
+map! <F2> :call TrimWhiteSpace()<CR>
+
+
+nnoremap <F5> :GundoToggle<CR>
+
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
+
