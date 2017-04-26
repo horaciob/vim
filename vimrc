@@ -19,6 +19,7 @@ Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'ervandew/supertab'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Bundle "vim-scripts/SyntaxRange"
 filetype plugin indent on
 
 color jellybeans
@@ -70,19 +71,16 @@ let g:ctrlp_custom_ignore= 'vendor'
 set laststatus=2
 
 " Removes trailing spaces
-function TrimWhiteSpace()
-  %s/\s*$//
-  ''
-endfunction
 
-"set list listchars=trail:.,extends:>
-"autocmd FileWritePre * call TrimWhiteSpace()
-"autocmd FileAppendPre * call TrimWhiteSpace()
-"autocmd FilterWritePre * call TrimWhiteSpace()
-"autocmd BufWritePre * call TrimWhiteSpace()
 
-map <F2> :call TrimWhiteSpace()<CR>
-map! <F2> :call TrimWhiteSpace()<CR>
+function! TrimWhitespace()
+  let l:save = winsaveview()
+  %s/\s\+$//e
+  call winrestview(l:save)
+endfun
+
+" remove whitespace on save
+autocmd BufWritePre <buffer> :call TrimWhitespace()
 
 
 nnoremap <F5> :GundoToggle<CR>
