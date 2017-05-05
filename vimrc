@@ -20,6 +20,7 @@ Bundle 'ervandew/supertab'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Bundle "vim-scripts/SyntaxRange"
+Bundle "tpope/vim-fugitive"
 filetype plugin indent on
 
 color jellybeans
@@ -42,7 +43,7 @@ set nobackup
 set hlsearch
 set ignorecase
 set smartcase
-
+set noerrorbells visualbell
 " No show command
 autocmd VimEnter * set nosc
 
