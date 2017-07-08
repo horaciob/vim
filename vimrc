@@ -19,7 +19,7 @@ Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'ervandew/supertab'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Bundle "vim-scripts/SyntaxRange"
+Plugin 'mileszs/ack.vim'
 Bundle "tpope/vim-fugitive"
 filetype plugin indent on
 
@@ -44,6 +44,7 @@ set hlsearch
 set ignorecase
 set smartcase
 set noerrorbells visualbell
+"
 " No show command
 autocmd VimEnter * set nosc
 
@@ -59,6 +60,8 @@ map <C-n> :NERDTreeToggle<CR>
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+filetype plugin on
+syntax on
 
 let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
@@ -71,9 +74,8 @@ let g:ctrlp_custom_ignore= 'vendor'
 "let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
 
+
 " Removes trailing spaces
-
-
 function! TrimWhitespace()
   let l:save = winsaveview()
   %s/\s\+$//e
@@ -82,7 +84,6 @@ endfun
 
 " remove whitespace on save
 autocmd BufWritePre <buffer> :call TrimWhitespace()
-
 
 nnoremap <F5> :GundoToggle<CR>
 
@@ -94,5 +95,7 @@ augroup CursorLine
   au WinLeave * setlocal nocursorline
 augroup END
 
+
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
+
