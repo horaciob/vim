@@ -13,14 +13,14 @@ Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-rake'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdtree'
 Bundle 'slim-template/vim-slim'
+Bundle 'tpope/vim-surround'
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'ervandew/supertab'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'mileszs/ack.vim'
-Bundle "tpope/vim-fugitive"
+Bundle 'tpope/vim-fugitive'
 filetype plugin indent on
 
 color jellybeans
@@ -99,3 +99,7 @@ augroup END
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
