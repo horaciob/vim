@@ -26,17 +26,16 @@ filetype plugin indent on
 color jellybeans
 
 "set cursorline
-set expandtab
 set modelines=0
 set shiftwidth=2
+set tabstop=2
+set expandtab
 set clipboard=unnamed
 set synmaxcol=128
 set ttyscroll=10
 set encoding=utf-8
-set tabstop=2
 set nowrap
 set number
-set expandtab
 set nowritebackup
 set noswapfile
 set nobackup
@@ -70,7 +69,17 @@ let g:syntastic_check_on_wq = 0
 
 set expandtab ts=2 sw=2 ai
 set nu
-let g:ctrlp_custom_ignore= 'vendor'
+
+
+"ctrol p
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+let g:ctrlp_custom_ignore = 'vendor'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ }
+nnoremap <C-t>. :CtrlPTag<cr>
+
 "let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
 
@@ -96,7 +105,7 @@ augroup CursorLine
 augroup END
 
 
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+highlight OverLength ctermfg=DarkGrey
 match OverLength /\%81v.\+/
 
 noremap <Up> <NOP>
