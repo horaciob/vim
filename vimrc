@@ -21,6 +21,8 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'mileszs/ack.vim'
 Bundle 'tpope/vim-fugitive'
+Bundle 'vim-ruby/vim-ruby'
+runtime macros/matchit.vim
 filetype plugin indent on
 
 color jellybeans
