@@ -9,8 +9,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " My Bundles
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-rake'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'slim-template/vim-slim'
@@ -21,7 +19,12 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'mileszs/ack.vim'
 Bundle 'tpope/vim-fugitive'
+
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-rake'
+Bundle 'tpope/vim-bundler'
+
 runtime macros/matchit.vim
 filetype plugin indent on
 
@@ -63,6 +66,11 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 filetype plugin on
 syntax on
+
+augroup rubypath
+    autocmd!
+    autocmd FileType ruby setlocal suffixesadd+=.rb
+augroup END
 
 let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1

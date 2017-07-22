@@ -5,3 +5,5 @@ rm -fr $HOME/.vimrc
 
 ln -s $(pwd)/vimrc  $HOME/.vimrc
 vim +PluginInstall +qall
+
+git config --global init.templatedir '$(pwd)/.git_template'
