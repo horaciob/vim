@@ -92,7 +92,6 @@ if executable('ag')
 endif
 
 
-nnoremap <C-t>. :CtrlPTag<cr>
 
 "let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
@@ -118,11 +117,12 @@ augroup CursorLine
   au WinLeave * setlocal nocursorline
 augroup END
 
-
+"nnoremap <C-t>. :CtrlPTag<cr>
 highlight OverLength ctermfg=DarkGrey
 match OverLength /\%81v.\+/
+nnoremap <leader>. :CtrlPTag<cr>
 
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
+    \ 'AcceptSelection("t")': ['<cr>'],
+    \ }
