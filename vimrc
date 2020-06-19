@@ -9,8 +9,8 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " My Bundles
+Plugin 'w0rp/ale'
 Bundle 'nanotech/jellybeans.vim'
-Bundle 'scrooloose/syntastic'
 Bundle 'slim-template/vim-slim'
 Bundle 'tpope/vim-surround'
 Bundle 'ctrlpvim/ctrlp.vim'
