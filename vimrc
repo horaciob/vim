@@ -50,7 +50,6 @@ set noerrorbells visualbell
 " No show command
 autocmd VimEnter * set nosc
 
-
 " NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
 let NERDTreeHighlightCursorline=1
@@ -77,7 +76,6 @@ let g:syntastic_check_on_wq = 0
 
 set nu
 
-
 "ctrol p
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 let g:ctrlp_custom_ignore = 'vendor'
@@ -88,12 +86,8 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
-
-nnoremap <C-t>. :CtrlPTag<cr>
-
 "let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
-
 
 " Removes trailing spaces
 function! TrimWhitespace()
@@ -115,9 +109,41 @@ augroup CursorLine
   au WinLeave * setlocal nocursorline
 augroup END
 
+"nnoremap <C-t>. :CtrlPTag<cr>
+nnoremap <leader>. :CtrlPTag<cr>
 
-highlight OverLength ctermfg=DarkGrey
-match OverLength /\%81v.\+/
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
+    \ 'AcceptSelection("t")': ['<cr>'],
+    \ }
+
+" From ttps://github.com/vim-ruby/vim-ruby/wiki/VimRubySupport autocomplete
+" end
+if !exists( "*RubyEndToken" )
+
+  function RubyEndToken()
+    let current_line = getline( '.' )
+    let braces_at_end = '{\s*\(|\(,\|\s\|\w\)*|\s*\)\?$'
+    let stuff_without_do = '^\s*\(class\|if\|unless\|begin\|case\|for\|module\|while\|until\|def\)'
+      let with_do = 'do\s*\(|\(,\|\s\|\w\)*|\s*\)\?$'
+
+      if match(current_line, braces_at_end) >= 0
+        return "\<CR>}\<C-O>O"
+      elseif match(current_line, stuff_without_do) >= 0
+        return "\<CR>end\<C-O>O"
+      elseif match(current_line, with_do) >= 0
+        return "\<CR>end\<C-O>O"
+      else
+        return "\<CR>"
+      endif
+    endfunction
+
+endif
+
+imap <buffer> <CR> <C-R>=RubyEndToken()<CR>
+
+" https://github.com/vim-ruby/vim-ruby/blob/master/doc/vim-ruby.txt
+let g:ruby_indent_access_modifier_style = 'indent'
 
 noremap <Up> <NOP>
 noremap <Down> <NOP>
@@ -129,3 +155,7 @@ set tabstop=2
 set smarttab
 set expandtab
 set backspace=indent,eol,start
+set colorcolumn=80
+
+" system clipboard
+set clipboard=unnamed
