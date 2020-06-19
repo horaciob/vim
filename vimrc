@@ -9,7 +9,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " My Bundles
-Plugin 'w0rp/ale'
+Plugin 'dense-analysis/ale'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'slim-template/vim-slim'
 Bundle 'tpope/vim-surround'
@@ -25,6 +25,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-bundler'
+Bundle 'fatih/vim-go'
 
 runtime macros/matchit.vim
 filetype plugin indent on
@@ -58,9 +59,6 @@ map <C-n> :NERDTreeToggle<CR>
 
 " Syntastic
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 filetype plugin on
 syntax on
 
@@ -144,6 +142,29 @@ imap <buffer> <CR> <C-R>=RubyEndToken()<CR>
 
 " https://github.com/vim-ruby/vim-ruby/blob/master/doc/vim-ruby.txt
 let g:ruby_indent_access_modifier_style = 'indent'
+
+" ALE!!!
+let g:ale_linters_explicit = 1
+" Set specific linters
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'c': ['clang'],
+\    'go': ['gofmt','golint', 'go vet'],
+\   'ruby': ['rubocop'],
+\}
+" Only run linters named in ale_linters settings.
+let g:ale_fix_on_save = 1
+let g:airline#extensions#ale#enabled = 1
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = 'X'
+let g:ale_sign_warning = '!'
+let g:ale_echo_cursor = 0
+
+
+" golang
+let g:go_auto_type_info = 1
+let g:go_fmt_command = "goimports"
+let g:go_auto_sameids = 1
 
 noremap <Up> <NOP>
 noremap <Down> <NOP>
