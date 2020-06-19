@@ -19,6 +19,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'mileszs/ack.vim'
 Bundle 'tpope/vim-fugitive'
+Bundle 'vim-scripts/a.vim'
 
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
@@ -32,9 +33,6 @@ color jellybeans
 
 "set cursorline
 set modelines=0
-set shiftwidth=2
-set tabstop=2
-set expandtab
 set clipboard=unnamed
 set synmaxcol=128
 set ttyscroll=10
@@ -77,7 +75,6 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-set expandtab ts=2 sw=2 ai
 set nu
 
 
@@ -126,3 +123,9 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+
+set shiftwidth=2
+set tabstop=2
+set smarttab
+set expandtab
+set backspace=indent,eol,start
