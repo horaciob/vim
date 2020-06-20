@@ -156,10 +156,10 @@ let g:ale_linters = {
 let g:ale_fix_on_save = 1
 let g:airline#extensions#ale#enabled = 1
 let g:ale_sign_column_always = 1
-let g:ale_sign_error = 'X'
-let g:ale_sign_warning = '!'
-let g:ale_echo_cursor = 0
-
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:airline#extensions#ale#enabled = 1
+let g:ale_set_highlights = 0
 
 " golang
 let g:go_auto_type_info = 1
