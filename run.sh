@@ -1,5 +1,8 @@
 #!/bin/bash
 
+brew install the_silver_searcher
+ brew install fzf
+
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 rm -fr $HOME/.vimrc
 

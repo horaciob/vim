@@ -9,18 +9,19 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " My Bundles
+set rtp+=~/.fzf
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 Plugin 'dense-analysis/ale'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'slim-template/vim-slim'
 Bundle 'tpope/vim-surround'
-Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'ervandew/supertab'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'mileszs/ack.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'vim-scripts/a.vim'
-
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-rake'
@@ -73,16 +74,6 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 set nu
-
-"ctrol p
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-let g:ctrlp_custom_ignore = 'vendor'
-let g:ctrlp_custom_ignore = '\v[\/]\.(DS_Store|git|hg|svn)|(optimized|compiled|node_modules|bower_compenents)$'
-
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
 
 "let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
@@ -142,6 +133,13 @@ imap <buffer> <CR> <C-R>=RubyEndToken()<CR>
 
 " https://github.com/vim-ruby/vim-ruby/blob/master/doc/vim-ruby.txt
 let g:ruby_indent_access_modifier_style = 'indent'
+
+" fzf
+let g:fzf_layout = { 'down': '~40%' }
+nnoremap <C-p> :GFiles<Cr>
+
+" Ag
+nnoremap <C-g> :Ag<Cr>
 
 " ALE!!!
 let g:ale_linters_explicit = 1
