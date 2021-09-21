@@ -20,12 +20,12 @@ Bundle 'ervandew/supertab'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'mileszs/ack.vim'
-Bundle 'tpope/vim-fugitive'
 Bundle 'vim-scripts/a.vim'
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-rake'
-Bundle 'tpope/vim-bundler'
 Bundle 'fatih/vim-go'
 
 runtime macros/matchit.vim
@@ -178,3 +178,7 @@ set colorcolumn=80
 
 " system clipboard
 set clipboard=unnamed
+
+" ctags!!!
+set tags+=.git/tags;
+command Rtag !ctags -R -f './.git/tags' --languages=ruby --exclude=.git --exclude=log --exclude=tmp . $(bundle list --paths)
