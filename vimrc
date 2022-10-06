@@ -13,6 +13,7 @@ set rtp+=~/.fzf
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'dense-analysis/ale'
+Plugin 'markonm/traces.vim'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'slim-template/vim-slim'
 Bundle 'tpope/vim-surround'
@@ -108,28 +109,28 @@ let g:ctrlp_prompt_mappings = {
 
 " From ttps://github.com/vim-ruby/vim-ruby/wiki/VimRubySupport autocomplete
 " end
-if !exists( "*RubyEndToken" )
+"if !exists( "*RubyEndToken" )
+"
+"  function RubyEndToken()
+"    let current_line = getline( '.' )
+"    let braces_at_end = '{\s*\(|\(,\|\s\|\w\)*|\s*\)\?$'
+"    let stuff_without_do = '^\s*\(class\|if\|unless\|begin\|case\|for\|module\|while\|until\|def\)'
+"      let with_do = 'do\s*\(|\(,\|\s\|\w\)*|\s*\)\?$'
+"
+"      if match(current_line, braces_at_end) >= 0
+"        return "\<CR>}\<C-O>O"
+"      elseif match(current_line, stuff_without_do) >= 0
+"        return "\<CR>end\<C-O>O"
+"      elseif match(current_line, with_do) >= 0
+"        return "\<CR>end\<C-O>O"
+"      else
+"        return "\<CR>"
+"      endif
+"    endfunction
+"
+"endif
 
-  function RubyEndToken()
-    let current_line = getline( '.' )
-    let braces_at_end = '{\s*\(|\(,\|\s\|\w\)*|\s*\)\?$'
-    let stuff_without_do = '^\s*\(class\|if\|unless\|begin\|case\|for\|module\|while\|until\|def\)'
-      let with_do = 'do\s*\(|\(,\|\s\|\w\)*|\s*\)\?$'
-
-      if match(current_line, braces_at_end) >= 0
-        return "\<CR>}\<C-O>O"
-      elseif match(current_line, stuff_without_do) >= 0
-        return "\<CR>end\<C-O>O"
-      elseif match(current_line, with_do) >= 0
-        return "\<CR>end\<C-O>O"
-      else
-        return "\<CR>"
-      endif
-    endfunction
-
-endif
-
-imap <buffer> <CR> <C-R>=RubyEndToken()<CR>
+" imap <buffer> <CR> <C-R>=RubyEndToken()<CR>
 
 " https://github.com/vim-ruby/vim-ruby/blob/master/doc/vim-ruby.txt
 let g:ruby_indent_access_modifier_style = 'indent'
@@ -180,5 +181,6 @@ set colorcolumn=80
 set clipboard=unnamed
 
 " ctags!!!
-set tags+=.git/tags;
-command Rtag !ctags -R -f './.git/tags' --languages=ruby --exclude=.git --exclude=log --exclude=tmp . $(bundle list --paths)
+"set tags+=.git/tags;
+nmap g<C-]> :execute 'tab tag '.expand('<cword>')<CR>
+command Rtag !ctags -R -f 'tags' --languages=ruby --exclude=.git --exclude=log --exclude=tmp . $(bundle list --paths)
